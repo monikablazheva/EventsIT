@@ -1,0 +1,44 @@
+﻿@model IEnumerable<EventsIT.Models.Event>
+
+@{
+    ViewData["Title"] = "Catalog";
+}
+
+<h1>Catalog</h1>
+<link href="/css/Catalog.css" rel="stylesheet" />
+@foreach (var item in Model) {
+    <div class="ticket">
+        <div class="item">
+            <div class="item-right">
+                @if (item.ImageURL != null)
+                {
+                    <img id="imageUrl" class="img-fluid" alt=" image" src="data:image/*;base64,@(Convert.ToBase64String(item.ImageURL))">
+                }
+                else
+                {
+                    <img id="imageUrl" class="img-fluid" alt=" image" src="">
+                }
+                <span class="up-border"></span>
+                <span class="down-border"></span>
+            </div> <!-- end item-right -->
+
+            <div class="item-left">
+                <p class="event">Ticket</p>
+                <h2 class="title">@item.Name</h2>
+
+                <div class="sce">
+                    <div class="icon">
+                        <i class="fa fa-table"></i>
+                    </div>
+                    <p>@item.Date</p>
+                </div>
+                <div class="fix"></div>
+                <form method="post" asp-controller="Tickets" asp-action="Create" asp-route-eventId="@item.Id">
+                    
+                            <button class="btn btn-primary" id="submit-button"><span>Buy</span></button>
+                </form>
+              
+            </div> <!-- end item-right -->
+        </div> <!-- end item -->
+    </div>
+}

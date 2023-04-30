@@ -1,0 +1,140 @@
+﻿* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+div.ticket {
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.upcomming {
+    font-size: 45px;
+    text-transform: uppercase;
+    border-left: 14px solid rgba(255, 235, 59, 0.78);
+    padding-left: 12px;
+    margin: 18px 8px;
+}
+
+.ticket .item {
+    width: 48%;
+    float: left;
+    padding: 0 20px;
+    background: #dae6f1;
+    overflow: hidden;
+    margin: 10px
+}
+
+.ticket .item-right, .ticket .item-left {
+    float: left;
+    padding: 20px
+}
+
+.ticket .item-right {
+    padding: 79px 50px;
+    margin-right: 20px;
+    width: 25%;
+    position: relative;
+    height: 286px
+}
+
+    .ticket .item-right .up-border, .ticket .item-right .down-border {
+        padding: 14px 15px;
+        background-color: #fff;
+        border-radius: 50%;
+        position: absolute
+    }
+
+    .ticket .item-right .up-border {
+        top: -8px;
+        right: -35px;
+    }
+
+    .ticket .item-right .down-border {
+        bottom: -13px;
+        right: -35px;
+    }
+
+    .ticket .item-right .num {
+        font-size: 60px;
+        text-align: center;
+        color: #111
+    }
+
+    .ticket .item-right .day, .ticket .item-left .event {
+        color: #555;
+        font-size: 20px;
+        margin-bottom: 9px;
+    }
+
+    .ticket .item-right .day {
+        text-align: center;
+        font-size: 25px;
+    }
+
+.ticket .item-left {
+    width: 71%;
+    padding: 34px 0px 19px 46px;
+    border-left: 3px dotted #999;
+}
+
+    .ticket .item-left .title {
+        color: #111;
+        font-size: 34px;
+        margin-bottom: 12px
+    }
+
+    .ticket .item-left .sce {
+        margin-top: 5px;
+        display: block
+    }
+
+        .ticket .item-left .sce .icon, .ticket .item-left .sce p,
+        .ticket .item-left .loc .icon, .ticket .item-left .loc p {
+            float: left;
+            word-spacing: 5px;
+            letter-spacing: 1px;
+            color: #888;
+            margin-bottom: 10px;
+        }
+
+        .ticket .item-left .sce .icon, .ticket .item-left .loc .icon {
+            margin-right: 10px;
+            font-size: 20px;
+            color: #666
+        }
+
+    .ticket .item-left .loc {
+        display: block
+    }
+
+.fix {
+    clear: both
+}
+
+.ticket .item .tickets, .booked, .cancel {
+    color: #dae6f1;
+    padding: 6px 14px;
+    float: right;
+    margin-top: 10px;
+    font-size: 18px;
+    border: none;
+    cursor: pointer
+}
+
+
+.linethrough {
+    text-decoration: line-through
+}
+
+@media only screen {
+    .ticket .item {
+        width: 80%;
+        margin-right: 20px
+    }
+
+    div.ticket {
+        margin: 0 20px auto
+    }
+}

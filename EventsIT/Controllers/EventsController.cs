@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EventsIT.Data;
 using EventsIT.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace EventsIT.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class EventsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -18,7 +21,12 @@ namespace EventsIT.Controllers
         {
             _context = context;
         }
-
+        public async Task<IActionResult> Catalog()
+        {
+            return _context.Events != null ?
+                        View(await _context.Events.ToListAsync()) :
+                        Problem("Entity set 'ApplicationDbContext.Events'  is null.");
+        }
         // GET: Events
         public async Task<IActionResult> Index()
         {

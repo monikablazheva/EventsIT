@@ -29,11 +29,11 @@
                     <label asp-for="ImageURL" style="width: 100%;"></label>
                     @if (Model.ImageURL != null)
                     {
-                        <img id="imageUrl" class="img-fluid" alt="Dessert image" src="data:image/*;base64,@(Convert.ToBase64String(Model.ImageURL))">
+                        <img id="imageUrl" class="img-fluid" alt=" image" src="data:image/*;base64,@(Convert.ToBase64String(Model.ImageURL))">
                     }
                     else
                     {
-                        <img id="imageUrl" class="img-fluid" alt="Dessert image" src="">
+                        <img id="imageUrl" class="img-fluid" alt=" image" src="">
                     }
                     <input type="file"
                            accept=".png,.jpg,.jpeg,.gif,.tif"
