@@ -26,6 +26,7 @@ namespace EventsIT.Areas.Identity.Pages.Account.Manage
             _signInManager = signInManager;
         }
 
+
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
         ///     directly from your code. This API may change or be removed in future releases.
@@ -52,6 +53,14 @@ namespace EventsIT.Areas.Identity.Pages.Account.Manage
         /// </summary>
         public class InputModel
         {
+            [Display(Name = "First Name")]
+            public string FirstName { get; set; }
+
+            [Display(Name = "Last Name")]
+            public string LastName { get; set; }
+
+            [Display(Name = "Username")]
+            public string Username { get; set; }
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
@@ -65,11 +74,16 @@ namespace EventsIT.Areas.Identity.Pages.Account.Manage
         {
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+            var firstName = user.FirstName;
+            var lastName = user.LastName;
 
             Username = userName;
 
             Input = new InputModel
             {
+                FirstName = firstName,
+                LastName = lastName,
+                Username = userName,
                 PhoneNumber = phoneNumber
             };
         }
@@ -98,6 +112,40 @@ namespace EventsIT.Areas.Identity.Pages.Account.Manage
             {
                 await LoadAsync(user);
                 return Page();
+            }
+
+            var firstName = user.FirstName;
+            var lastName = user.LastName;
+            if (Input.FirstName != firstName)
+            {
+                user.FirstName = Input.FirstName;
+                await _userManager.UpdateAsync(user);
+            }
+
+            if (Input.LastName != lastName)
+            {
+                user.LastName = Input.LastName;
+                await _userManager.UpdateAsync(user);
+            }
+
+            if (Input.Username != user.UserName)
+            {
+                var userNameExists = await _userManager.FindByNameAsync(Input.Username);
+                if (userNameExists != null)
+                {
+                    StatusMessage = "User name already taken. Select a different username.";
+                    return RedirectToPage();
+                }
+                var setUserName = await _userManager.SetUserNameAsync(user, Input.Username);
+                if (!setUserName.Succeeded)
+                {
+                    StatusMessage = "Unexpected error when trying to set user name.";
+                    return RedirectToPage();
+                }
+                else
+                {
+                    await _userManager.UpdateAsync(user);
+                }
             }
 
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
