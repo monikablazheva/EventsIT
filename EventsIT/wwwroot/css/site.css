@@ -16,3 +16,17 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.event-tumb {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80px;
+    padding: 0px;
+    background: #fff;
+}
+
+    .event-tumb img {
+        max-width: 100%;
+        max-height: 100%;
+    }

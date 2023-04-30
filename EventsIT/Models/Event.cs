@@ -15,7 +15,7 @@ namespace EventsIT.Models
         [StringLength(255)]
         public string Description { get; set; }
 
-        public byte[]? ProfilePicture { get; set; }
+        public byte[]? ImageURL { get; set; }
 
         [Required]
         [DataType(DataType.DateTime)]
